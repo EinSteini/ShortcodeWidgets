@@ -30,19 +30,20 @@ function csvcontact( $attr ){
     foreach($content_array as $k => $v){
        switch($v){
             case 'email'; 
-                $output .= file_get_contents("inputs/email.html", true);break;
+                $output .= file_get_contents("csvcontact/inputs/email.html", true);break;
             case 'name';
-                $output .= file_get_contents("inputs/name.html", true);break;
+                $output .= file_get_contents("csvcontact/inputs/name.html", true);break;
 
         }
     }
-    
+    $output .= file_get_contents("csvcontact/inputs/submit.html", true);
     $output .= '</form></div>';
 
     return $output;
 }
 
-add_action("wp_enqueue_scripts","load_css");
-function load_css(){
+add_action("wp_enqueue_scripts","load_scripts");
+function load_scripts(){
     wp_enqueue_style("bootstrap", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css");
+    wp_enqueue_script("jscsvcontact",plugins_url("csvcontact/script.js", __FILE__));
 }
