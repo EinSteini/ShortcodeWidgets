@@ -17,7 +17,7 @@ function csvcontact( $attr ){
         $attr
     );
 
-    $output = '<div id="maindiv"><form>';
+    $output = '<div id="maindiv"><form method="post" action="wp-content/plugins/MoreWidgets/csvcontact/writeascsv.php" >';
 
     //Check if attribute is given
     if(!isset($attr["content"])){
@@ -37,13 +37,15 @@ function csvcontact( $attr ){
         }
     }
     $output .= file_get_contents("csvcontact/inputs/submit.html", true);
-    $output .= '</form></div>';
+    $output .= '<iframe style="display:none;" name="csvphpexec"></iframe></form></div>';
 
     return $output;
 }
+
 
 add_action("wp_enqueue_scripts","load_scripts");
 function load_scripts(){
     wp_enqueue_style("bootstrap", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css");
     wp_enqueue_script("jscsvcontact",plugins_url("csvcontact/script.js", __FILE__));
+
 }
