@@ -2,7 +2,7 @@
 /*
 Plugin Name: ShortcodeWidgets
 Description: This Plugin adds widgets to your WordPress
-Version: Alpha 1.1
+Version: Alpha 0.1.2
 Author: Nils Steinkamp
 */
 
@@ -37,7 +37,7 @@ function csvcontact( $attr ){
         }
     }
     $output .= file_get_contents("csvcontact/inputs/submit.html", true);
-    $output .= '<iframe id="csvphpexec"></iframe></form></div>';
+    $output .= '</form></div>';
 
     return $output;
 }
@@ -46,32 +46,29 @@ add_action( 'admin_post_csv_submit', 'write_to_csv' );
 add_action( 'admin_post_nopriv_csv_submit', 'write_to_csv' );
 
 function write_to_csv(){
-    echo $_POST["csvemail"];
-    //if ( empty($_POST) || !wp_verify_nonce($_POST['csv_nonce'],'csv_submit') ) {
-      //  echo '<p>You targeted the right function, but sorry, your nonce did not verify.</p>';
-      //  die();
-    //}
-    
-    $url = wp_nonce_url('themes.php?page=example','example-theme-options');
 
-    if (false === ($creds = request_filesystem_credentials($url, '', false, false, null) ) ) {
-	    return; // stop processing here
+    $date = getdate();
+
+    $csvarray = array(
+        $date["mday"].".".$date["mon"].".".$date["year"]." ".$date["hours"].":".$date["minutes"].":".$date["seconds"],
+        $_POST["csvname"],
+        $_POST["csvsurname"],
+        $_POST["csvemail"]
+    );
+
+    $file = plugin_dir_path( __FILE__ ).'csvcontact/csv/'.$date['year'].'_'.$date['mon'].'.csv';
+    $open = fopen($file, "a");
+
+    if(!$open){
+        echo "File couldn't be opened to write. Maybe missing permissions?";
+        sleep(2);
+        wp_redirect( '/' );
     }
 
-    if ( ! WP_Filesystem($creds) ) {
-        request_filesystem_credentials($url, '', true, false, null);
-        return;
-    }
-
-    global $wp_filesystem;
-
-    //$wp_filesystem->put_contents(
-       // wp_plugins_dir()."MoreWidgets/csvcontact/csv/example.txt",
-      //  'Example',
-    //    FS_CHMOD_FILE
-    //);
-
-    wp_redirect( "/" );
+    fputcsv($open, $csvarray);
+    fclose($open);
+    //wp_redirect( "/" );
+    die();
 }
 
 add_action("wp_enqueue_scripts","load_scripts");
