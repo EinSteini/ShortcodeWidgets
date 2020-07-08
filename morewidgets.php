@@ -67,7 +67,7 @@ function write_to_csv(){
 
     fputcsv($open, $csvarray);
     fclose($open);
-    //wp_redirect( "/" );
+    wp_redirect( "/" );
     die();
 }
 
