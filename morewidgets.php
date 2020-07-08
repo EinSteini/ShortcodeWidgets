@@ -17,7 +17,7 @@ function csvcontact( $attr ){
         $attr
     );
 
-    $output = '<div id="maindiv"><form method="post" action="wp-content/plugins/MoreWidgets/csvcontact/writeascsv.php" >';
+    $output = file_get_contents('csvcontact/formstart.php', true);
 
     //Check if attribute is given
     if(!isset($attr["content"])){
@@ -37,11 +37,25 @@ function csvcontact( $attr ){
         }
     }
     $output .= file_get_contents("csvcontact/inputs/submit.html", true);
-    $output .= '<iframe style="display:none;" name="csvphpexec"></iframe></form></div>';
+    $output .= '<iframe id="csvphpexec"></iframe></form></div>';
 
     return $output;
 }
 
+add_action( 'wp_post_nopriv_csv_submit', 'write_to_csv' );
+add_action( 'wp_post_csv_submit', 'write_to_csv' );
+add_action( 'wp_post', 'write_to_csv');
+add_action( 'wp_post_nopriv', 'write_to_csv');
+
+function write_to_csv(){
+    echo "<p>sflkflkksn0</p>";
+    if ( empty($_POST) || !wp_verify_nonce($_POST['csv_nonce'],'csv_submit') ) {
+        echo '<p>You targeted the right function, but sorry, your nonce did not verify.</p>';
+        die();
+    } else {
+        echo "<p>works</p>";
+    }
+}
 
 add_action("wp_enqueue_scripts","load_scripts");
 function load_scripts(){

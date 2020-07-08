@@ -3,6 +3,6 @@ function csvsubmit(){
     var surname = document.getElementById("CSVsurname").value;
     var name = document.getElementById("CSVname").value;
 
-    //document.getElementById("csvphpexec").innerHTML = "<?php include_once 'writeascsv.php';?>";
+    document.getElementById("csvphpexec").contentDocument.write("<?php echo esc_url( admin_url('admin-post.php') ); ?>");
 }
 
