@@ -1,3 +1,46 @@
 <?php
-    echo "todo nach dem urlaub";
+    function write_to_csv(){
+
+        $date = getdate(time()+7200);
+    
+        $csvarray = array(
+            $date["mday"].".".$date["mon"].".".$date["year"]." ".$date["hours"].":".$date["minutes"].":".$date["seconds"],
+            htmlentities($_POST["csvname"]),
+            htmlentities($_POST["csvsurname"]),
+            htmlentities($_POST["csvemail"])
+        );
+
+        $file = plugin_dir_path( __FILE__ ).'csv/'.$date['year'].'_'.$date['mon'].'.csv';
+
+        if($date["mon"] == 1){
+            $fileold = plugin_dir_path( __FILE__ ).'csv/'.strval(intval($date['year'])-1).'_12.csv';
+            $filenameold = strval(intval($date['year'])-1).'_12';
+        }else{
+            $fileold = plugin_dir_path( __FILE__ ).'csv/'.$date['year'].'_'.strval(intval($date['mon'])-1).'.csv';
+            $filenameold = $date['year'].'_'.strval(intval($date['mon'])-1);
+        }
+        
+        if(!(file_exists($file))){
+            copy(plugin_dir_path(__FILE__)."csv/sample.csv",$file);
+            $mail = wp_mail(get_option('admin_email'), "CSVContact ".$filenameold,"Here is your CSVContact-Form for ".$filenameold,"",array($file)) ;
+        }
+
+        $open = fopen($file, "a");
+    
+        if(!$open){
+            wp_mail(
+                get_option('admin_email'),
+                "Error while trying to write file by Plugin ShortcodeWidgets", 
+                "Your CSVContact form couldn't write the submitted data to the server. Please check if your user has writing permissions on this directory or contact your hoster",
+            );
+            wp_redirect( '/' );
+            die();
+        }
+    
+        fputcsv($open, $csvarray);
+        fclose($open);
+
+        wp_redirect( "/" );
+        die();
+    }
 ?>
