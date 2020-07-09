@@ -1,13 +1,13 @@
 <?php
     function write_to_csv(){
 
-        $date = getdate();
+        $date = getdate(time()+7200);
     
         $csvarray = array(
             $date["mday"].".".$date["mon"].".".$date["year"]." ".$date["hours"].":".$date["minutes"].":".$date["seconds"],
-            $_POST["csvname"],
-            $_POST["csvsurname"],
-            $_POST["csvemail"]
+            htmlentities($_POST["csvname"]),
+            htmlentities($_POST["csvsurname"]),
+            htmlentities($_POST["csvemail"])
         );
 
         $file = plugin_dir_path( __FILE__ ).'csv/'.$date['year'].'_'.$date['mon'].'.csv';
