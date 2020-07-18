@@ -22,6 +22,8 @@ function csvcontact( $attr ){
        switch($v){
             case 'email'; 
                 $output .= file_get_contents("inputs/email.html", true);break;
+            case 'message';
+                $output .= file_get_contents("inputs/message.html", true);break;
             case 'name';
                 $output .= file_get_contents("inputs/name.html", true);break;
 

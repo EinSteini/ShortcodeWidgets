@@ -1,0 +1,15 @@
+input{
+    padding: 1;
+}
+.csvcontactelement{
+    margin: 1rem 1rem;
+}
+.row {
+    display: inline-block;
+}
+.row label{
+    display:block;
+}
+.right{
+    float: right;
+}
