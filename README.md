@@ -14,5 +14,6 @@ attribute. This attribute has to be a string where the wanted inputs can be pass
 <ul>
   <li><b>name</b> gives the form two inputs in one row with "name" and "surname" </li> 
   <li><b>email</b> gives you a input field for email adresses</li>
+  <li><b>message</b> gives you a textarea for a message </li>
 </ul>
-<code>[csvcontact content="name, email"]</code>
+<code>[csvcontact content="name, email, message"]</code>
