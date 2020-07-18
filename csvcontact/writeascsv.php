@@ -5,10 +5,10 @@
     
         $csvarray = array(
             $date["mday"].".".$date["mon"].".".$date["year"]." ".$date["hours"].":".$date["minutes"].":".$date["seconds"],
-            htmlentities($_POST["csvname"]),
-            htmlentities($_POST["csvsurname"]),
-            htmlentities($_POST["csvemail"]),
-            htmlentities($_POST["message"])
+            str_replace(";","",htmlspecialchars($_POST["csvname"])),
+            str_replace(";","",htmlspecialchars($_POST["csvsurname"])),
+            str_replace(";","",htmlspecialchars($_POST["csvemail"])),
+            str_replace(";","",htmlspecialchars($_POST["csvmessage"]))
         );
 
         $file = plugin_dir_path( __FILE__ ).'csv/'.$date['year'].'_'.$date['mon'].'.csv';
