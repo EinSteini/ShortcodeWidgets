@@ -32,7 +32,7 @@
             wp_mail(
                 get_option('admin_email'),
                 "Error while trying to write file by Plugin ShortcodeWidgets", 
-                "Your CSVContact form couldn't write the submitted data to the server. Please check if your user has writing permissions on this directory or contact your hoster",
+                "Your CSVContact form couldn't write the submitted data to the server. Please check if your user has writing permissions on this directory or contact your hoster"
             );
             wp_redirect( '/' );
             die();
