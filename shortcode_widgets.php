@@ -14,6 +14,10 @@ add_action( 'admin_init','admin_menu_init');
 require_once("csvcontact/csvcontact.php");
 require_once("csvcontact/writeascsv.php");
 
+
+add_action( 'admin_post_csv_submit', 'write_to_csv' );
+add_action( 'admin_post_nopriv_csv_submit', 'write_to_csv' );
+
 add_shortcode("csvcontact", "csvcontact");
 //----------------------------------
 
