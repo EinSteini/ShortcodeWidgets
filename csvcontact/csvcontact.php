@@ -1,8 +1,6 @@
 <?php
 function csvcontact( $attr ){
 
-    add_action( 'admin_post_nopriv_csv_submit', 'write_to_csv' );
-
     $attributes = shortcode_atts(
         array(
             'content' => '',
