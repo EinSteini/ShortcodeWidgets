@@ -16,4 +16,8 @@ attribute. This attribute has to be a string where the wanted inputs can be pass
   <li><b>email</b> gives you a input field for email adresses</li>
   <li><b>message</b> gives you a textarea for a message </li>
 </ul>
-<code>[csvcontact content="name, email, message"]</code>
+<code>[csvcontact content="name, email, message"]</code><br>
+<p>You can change the labels, placeholders and titles inside the csv file in the settings, 
+along with the email adress the files should be sent to, the text of the submit button and
+the timezone relative to GMT that should be used in the csv file's "Time" section.
+A shortcode generator is planned.</p>
