@@ -1,7 +1,16 @@
 <?php
     function write_to_csv(){
 
-        $date = getdate(time()+7200);
+        $option = get_option( 'csvcontact' );
+        $date = getdate(time()+$option['timezone']*3600);
+
+        $titlearray = array(
+            $option['csv_time'],
+            $option['csv_name'],
+            $option['csv_surname'],
+            $option['csv_email'],
+            $option['csv_message']
+        );
     
         $csvarray = array(
             $date["mday"].".".$date["mon"].".".$date["year"]." ".$date["hours"].":".$date["minutes"].":".$date["seconds"],
@@ -22,15 +31,17 @@
         }
         
         if(!(file_exists($file))){
-            copy(plugin_dir_path(__FILE__)."csv/sample.csv",$file);
-            $mail = wp_mail(get_option('admin_email'), "CSVContact ".$filenameold,"Here is your CSVContact-Form for ".$filenameold,"",array($file)) ;
+            $open = fopen($file, "a");
+            fputcsv($open, $titlearray);
+            $mail = wp_mail($option['email_adress_to_send_to'], "CSVContact ".$filenameold,"Here is your CSVContact-Form for ".$filenameold,"",array($file)) ;
+        }else{
+            $open = fopen($file, "a");
         }
 
-        $open = fopen($file, "a");
     
         if(!$open){
             wp_mail(
-                get_option('admin_email'),
+                $option['email_adress_to_send_to'],
                 "Error while trying to write file by Plugin ShortcodeWidgets", 
                 "Your CSVContact form couldn't write the submitted data to the server. Please check if your user has writing permissions on this directory or contact your hoster"
             );

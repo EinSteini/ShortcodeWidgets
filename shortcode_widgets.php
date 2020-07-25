@@ -6,9 +6,9 @@ Version: Beta 1.0
 Author: Nils Steinkamp
 */
 
+require_once("plugin_activation.php");
+register_activation_hook( __FILE__, 'activation' );
 require_once("admin_menu.php");
-add_action( 'admin_menu','admin_menu' );
-add_action( 'admin_init','admin_menu_init');
 
 //-------csvcontact-----------------
 require_once("csvcontact/csvcontact.php");
