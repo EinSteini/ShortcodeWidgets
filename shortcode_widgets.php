@@ -24,5 +24,4 @@ add_shortcode("csvcontact", "csvcontact");
 add_action("wp_enqueue_scripts","load_scripts");
 function load_scripts(){
     wp_enqueue_style("csvcss", plugins_url("csvcontact/inputs/style.css", __FILE__));
-    wp_enqueue_script( 'adminjs', plugins_url('adminjs.js'),__FILE__ );
 }

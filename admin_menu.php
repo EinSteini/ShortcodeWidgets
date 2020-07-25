@@ -333,7 +333,7 @@ function csvcontact_placeholders_callback(){
 	echo __( 'Change the placeholders of the form', 'Shortcode_Widgest');
 }
 function csvcontact_csv_callback(){
-	echo __( 'Change the settings of the csv file. Note that the changes will only apply as the next month occurs.', 'Shortcode_Widgest');
+	echo __( 'Change the settings of the csv file. Note that the changes will only apply as soon as the next month occurs.', 'Shortcode_Widgest');
 }
 
 function shortcode_widgets_options_page(  ) { 
