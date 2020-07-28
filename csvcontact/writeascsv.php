@@ -8,15 +8,30 @@
             $option['csv_time'],
             $option['csv_name'],
             $option['csv_surname'],
+            $option['csv_company'],
+            $option['csv_adress'],
             $option['csv_email'],
+            $option['csv_telephone'],
+            $option['csv_sector'],
+            $option['csv_arrival'],
+            $option['csv_departure'],
+            $option['csv_beds'],
             $option['csv_message']
+            
         );
     
         $csvarray = array(
             $date["mday"].".".$date["mon"].".".$date["year"]." ".$date["hours"].":".$date["minutes"].":".$date["seconds"],
             str_replace(";","",htmlspecialchars($_POST["csvname"])),
             str_replace(";","",htmlspecialchars($_POST["csvsurname"])),
+            str_replace(";","",htmlspecialchars($_POST["csvcompany"])),
+            str_replace(";","",htmlspecialchars($_POST["csvadress"])),
             str_replace(";","",htmlspecialchars($_POST["csvemail"])),
+            str_replace(";","",htmlspecialchars($_POST["csvtelephone"])),
+            str_replace(";","",htmlspecialchars($_POST["csvsector"])),
+            str_replace(";","",htmlspecialchars($_POST["csvarrival"])),
+            str_replace(";","",htmlspecialchars($_POST["csvdeparture"])),
+            str_replace(";","",htmlspecialchars($_POST["csvbeds"])),
             str_replace(";","",htmlspecialchars($_POST["csvmessage"]))
         );
 

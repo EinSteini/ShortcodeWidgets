@@ -21,6 +21,45 @@ function csvcontact( $attr ){
     $option = get_option('csvcontact');
     foreach($content_array as $k => $v){
        switch($v){
+            case 'adress';
+                $output .= str_replace(
+                    array(
+                        'label_adress',
+                        'placeholder_adress'
+                    ),
+                    array(
+                        $option['label_adress'],
+                        $option['placeholder_adress']
+                    ),
+                    file_get_contents('inputs/adress.html', true)
+                );
+                break;
+            case 'beds';
+                $output .= str_replace(
+                    array(
+                        'label_beds',
+                        'placeholder_beds'
+                    ),
+                    array(
+                        $option['label_beds'],
+                        $option['placeholder_beds']
+                    ),
+                    file_get_contents('inputs/beds.html', true)
+                );
+                break;
+            case 'company';
+                $output .= str_replace(
+                    array(
+                        'label_company',
+                        'placeholder_company'
+                    ),
+                    array(
+                        $option['label_company'],
+                        $option['placeholder_company']
+                    ),
+                    file_get_contents('inputs/company.html', true)
+                );
+                break;
             case 'email'; 
                 $output .= str_replace(
                     array(
@@ -64,7 +103,45 @@ function csvcontact( $attr ){
                     file_get_contents('inputs/name.html', true)
                 );
                 break;
-
+            case 'period';
+                $output .= str_replace(
+                    array(
+                        'label_arrival',
+                        'label_departure'
+                    ),
+                    array(
+                        $option['label_arrival'],
+                        $option['label_departure']
+                    ),
+                    file_get_contents('inputs/period.html', true)
+                );
+                break;
+            case 'sector';
+                $output .= str_replace(
+                    array(
+                        'label_sector',
+                        'placeholder_sector'
+                    ),
+                    array(
+                        $option['label_sector'],
+                        $option['placeholder_sector']
+                    ),
+                    file_get_contents('inputs/sector.html', true)
+                );
+                break;
+            case 'telephone';
+                $output .= str_replace(
+                    array(
+                        'label_telephone',
+                        'placeholder_telephone'
+                    ),
+                    array(
+                        $option['label_telephone'],
+                        $option['placeholder_telephone']
+                    ),
+                    file_get_contents('inputs/telephone.html', true)
+                );
+                break;
         }
     }
     $output .= str_replace('text_button', $option['text_button'], file_get_contents('inputs/submit.html', true));
