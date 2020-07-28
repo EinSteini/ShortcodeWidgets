@@ -85,6 +85,62 @@ function shortcode_widgets_settings_init(  ) {
 		'shortcode_widgets_csvcontact_labels'
 	);
 
+	add_settings_field( 
+		'label_adress', 
+		__( 'Label for "Adress"', 'Shortcode_Widgets' ), 
+		'label_adress_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_labels'
+	);
+
+	add_settings_field( 
+		'label_beds', 
+		__( 'Label for "Beds"', 'Shortcode_Widgets' ), 
+		'label_beds_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_labels'
+	);
+
+	add_settings_field( 
+		'label_company', 
+		__( 'Label for "Company"', 'Shortcode_Widgets' ), 
+		'label_company_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_labels'
+	);
+
+	add_settings_field( 
+		'label_arrival', 
+		__( 'Label for "Arrival"', 'Shortcode_Widgets' ), 
+		'label_arrival_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_labels'
+	);
+
+	add_settings_field( 
+		'label_departure', 
+		__( 'Label for "Departure"', 'Shortcode_Widgets' ), 
+		'label_departure_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_labels'
+	);
+
+	add_settings_field( 
+		'label_sector', 
+		__( 'Label for "Sector"', 'Shortcode_Widgets' ), 
+		'label_sector_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_labels'
+	);
+
+	add_settings_field( 
+		'label_telephone', 
+		__( 'Label for "Telephone"', 'Shortcode_Widgets' ), 
+		'label_telephone_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_labels'
+	);
+
 	add_settings_section(
 		'shortcode_widgets_csvcontact_placeholders', 
 		__( 'Placeholders', 'Shortcode_Widgets' ), 
@@ -124,6 +180,46 @@ function shortcode_widgets_settings_init(  ) {
 		'shortcode_widgets_csvcontact_placeholders' 
 	);
 
+	add_settings_field( 
+		'placeholder_adress', 
+		__( 'Placeholder for "Adress"', 'Shortcode_Widgets' ), 
+		'placeholder_adress_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_placeholders' 
+	);
+	
+	add_settings_field( 
+		'placeholder_beds', 
+		__( 'Placeholder for "Beds"', 'Shortcode_Widgets' ), 
+		'placeholder_beds_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_placeholders' 
+	);
+
+	add_settings_field( 
+		'placeholder_company', 
+		__( 'Placeholder for "Company"', 'Shortcode_Widgets' ), 
+		'placeholder_company_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_placeholders' 
+	);
+
+	add_settings_field( 
+		'placeholder_sector', 
+		__( 'Placeholder for "Sector"', 'Shortcode_Widgets' ), 
+		'placeholder_sector_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_placeholders' 
+	);
+
+	add_settings_field( 
+		'placeholder_telephone', 
+		__( 'Placeholder for "Telephone"', 'Shortcode_Widgets' ), 
+		'placeholder_telephone_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_placeholders' 
+	);
+
 	add_settings_section(
 		'shortcode_widgets_csvcontact_csv', 
 		__( 'CSV File Settings', 'Shortcode_Widgets' ), 
@@ -156,9 +252,65 @@ function shortcode_widgets_settings_init(  ) {
 	);
 
 	add_settings_field( 
+		'csv_company', 
+		__( 'Title for "Company"', 'Shortcode_Widgets' ), 
+		'csv_company_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_csv' 
+	);
+
+	add_settings_field( 
+		'csv_adress', 
+		__( 'Title for "Adress"', 'Shortcode_Widgets' ), 
+		'csv_adress_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_csv' 
+	);
+
+	add_settings_field( 
 		'csv_email', 
 		__( 'Title for "Email"', 'Shortcode_Widgets' ), 
 		'csv_email_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_csv' 
+	);
+
+	add_settings_field( 
+		'csv_telephone', 
+		__( 'Title for "Telephone"', 'Shortcode_Widgets' ), 
+		'csv_telephone_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_csv' 
+	);
+
+	add_settings_field( 
+		'csv_sector', 
+		__( 'Title for "Sector"', 'Shortcode_Widgets' ), 
+		'csv_sector_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_csv' 
+	);
+
+	add_settings_field( 
+		'csv_arrival', 
+		__( 'Title for "Arrival"', 'Shortcode_Widgets' ), 
+		'csv_arrival_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_csv' 
+	);
+
+	add_settings_field( 
+		'csv_departure', 
+		__( 'Title for "Departure"', 'Shortcode_Widgets' ), 
+		'csv_departure_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_csv' 
+	);
+
+	add_settings_field( 
+		'csv_beds', 
+		__( 'Title for "Beds"', 'Shortcode_Widgets' ), 
+		'csv_beds_render', 
 		'csvcontact', 
 		'shortcode_widgets_csvcontact_csv' 
 	);
@@ -230,6 +382,68 @@ function label_email_render(  ) {
 
 }
 
+function label_adress_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[label_adress]' value='<?php echo $options['label_adress']; ?>'>
+	<?php
+
+}
+
+function label_beds_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[label_beds]' value='<?php echo $options['label_beds']; ?>'>
+	<?php
+
+}
+
+function label_company_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[label_company]' value='<?php echo $options['label_company']; ?>'>
+	<?php
+
+}
+
+function label_arrival_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[label_arrival]' value='<?php echo $options['label_arrival']; ?>'>
+	<?php
+
+}
+
+function label_departure_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[label_departure]' value='<?php echo $options['label_departure']; ?>'>
+	<?php
+
+}
+
+function label_sector_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[label_sector]' value='<?php echo $options['label_sector']; ?>'>
+	<?php
+
+}
+
+function label_telephone_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[label_telephone]' value='<?php echo $options['label_telephone']; ?>'>
+	<?php
+
+}
 
 function label_message_render(  ) { 
 
@@ -264,6 +478,51 @@ function placeholder_email_render(  ) {
 	$options = get_option( 'csvcontact' );
 	?>
 	<input type='text' name='csvcontact[placeholder_email]' value='<?php echo $options['placeholder_email']; ?>'>
+	<?php
+
+}
+
+function placeholder_adress_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[placeholder_adress]' value='<?php echo $options['placeholder_adress']; ?>'>
+	<?php
+
+}
+
+function placeholder_beds_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[placeholder_beds]' value='<?php echo $options['placeholder_beds']; ?>'>
+	<?php
+
+}
+
+function placeholder_company_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[placeholder_company]' value='<?php echo $options['placeholder_company']; ?>'>
+	<?php
+
+}
+
+function placeholder_sector_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[placeholder_sector]' value='<?php echo $options['placeholder_sector']; ?>'>
+	<?php
+
+}
+
+function placeholder_telephone_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[placeholder_telephone]' value='<?php echo $options['placeholder_telephone']; ?>'>
 	<?php
 
 }
@@ -308,6 +567,62 @@ function csv_email_render(  ) {
 	$options = get_option( 'csvcontact' );
 	?>
 	<input type='text' name='csvcontact[csv_email]' value='<?php echo $options['csv_email']; ?>'>
+	<?php
+
+}
+function csv_adress_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[csv_adress]' value='<?php echo $options['csv_adress']; ?>'>
+	<?php
+
+}
+function csv_beds_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[csv_beds]' value='<?php echo $options['csv_beds']; ?>'>
+	<?php
+
+}
+function csv_company_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[csv_company]' value='<?php echo $options['csv_company']; ?>'>
+	<?php
+
+}
+function csv_arrival_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[csv_arrival]' value='<?php echo $options['csv_arrival']; ?>'>
+	<?php
+
+}
+function csv_departure_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[csv_departure]' value='<?php echo $options['csv_departure']; ?>'>
+	<?php
+
+}
+function csv_sector_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[csv_sector]' value='<?php echo $options['csv_sector']; ?>'>
+	<?php
+
+}
+function csv_telephone_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[csv_telephone]' value='<?php echo $options['csv_telephone']; ?>'>
 	<?php
 
 }
