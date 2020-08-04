@@ -44,7 +44,15 @@ function shortcode_widgets_settings_init(  ) {
 		'timezone_render', 
 		'csvcontact', 
 		'shortcode_widgets_csvcontact_general' 
-    );
+	);
+	
+	add_settings_field( 
+		'redirect_page', 
+		__( 'Redirect Page after submit', 'Shortcode_Widgets' ), 
+		'redirect_page_render', 
+		'csvcontact', 
+		'shortcode_widgets_csvcontact_general' 
+	);
 
 	add_settings_section(
 		'shortcode_widgets_csvcontact_labels', 
@@ -348,6 +356,16 @@ function timezone_render(  ) {
 	$options = get_option( 'csvcontact' );
 	?>
 	GMT (+/-) <input type='number' name='csvcontact[timezone]' value='<?php echo $options['timezone']; ?>'>
+	<?php
+
+}
+
+function redirect_page_render(  ) { 
+
+	$options = get_option( 'csvcontact' );
+	?>
+	<input type='text' name='csvcontact[redirect_page]' value='<?php echo $options['redirect_page']; ?>' aria-describedby='description_redirect'>
+	<small name='description_redirect'>The page the user will be redirected to after submitting the form. Please only enter sub-directories (e.g. example.com/example -> /example).</small>
 	<?php
 
 }

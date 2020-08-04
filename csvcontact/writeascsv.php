@@ -53,7 +53,7 @@
                 $subject .= str_replace(array(plugin_dir_path( __FILE__ ).'csv/','.csv'),'',$filename);
                 $subject .= ' ';
             }
-            
+
             $mail = wp_mail($option['email_adress_to_send_to'], $subject, 'Here is the file from the last day the form was submitted.',"",str_replace('csv/','csv/old/',$pathsold));
 
             $open = fopen($file, "a");
@@ -69,14 +69,14 @@
                 "Error while trying to write file by Plugin ShortcodeWidgets", 
                 "Your CSVContact form couldn't write the submitted data to the server. Please check if your user has writing permissions on this directory or contact your hoster"
             );
-            wp_redirect( '/' );
+            wp_redirect( $option['redirect_page'] );
             die();
         }
     
         fputcsv($open, $csvarray);
         fclose($open);
 
-        wp_redirect( "/" );
+        wp_redirect( $option['redirect_page'] );
         die();
     }
 ?>
