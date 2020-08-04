@@ -5,6 +5,7 @@
             'email_adress_to_send_to' => get_option( 'admin_email', ''),
             'text_button' => 'Submit',
             'timezone' => 2,
+            'redirect_page' => '/',
             'label_name' => 'Name',
             'label_surname' => 'Surname',
             'label_email' => 'Email',
