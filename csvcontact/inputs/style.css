@@ -4,3 +4,12 @@
 .csvcontactelement label{
     display: block;
 }
+.row {
+    display: inline-block;
+}
+.row label{
+    display:block;
+}
+.right{
+    float: right;
+}
